@@ -13,10 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Optional;
 
 public class SignupFormController {
@@ -51,8 +49,8 @@ public class SignupFormController {
                 .filter(e -> e.getEmail().equals(email))
                 .findFirst();
 
-        if (selectUser.isPresent()){
-            new Alert(Alert.AlertType.WARNING,"Email is already exits!").show();
+        if (selectUser.isPresent()) {
+            new Alert(Alert.AlertType.WARNING, "Email is already exits!").show();
             return;
         }
 
@@ -62,14 +60,15 @@ public class SignupFormController {
                         txtLastName.getText(),
                         email,
                         txtPwd.getText(),
-                        rBtnDoctor.isSelected()?AccountType.DOCTOR:AccountType.PATIENT)
+                        rBtnDoctor.isSelected() ? AccountType.DOCTOR : AccountType.PATIENT)
         );
-            new Alert(Alert.AlertType.CONFIRMATION,"Welcome").show();
-            setUi();
+        new Alert(Alert.AlertType.CONFIRMATION, "Welcome").show();
+        setUi();
 
     }
-    private  void setUi() throws IOException {
-        Stage stage = (Stage)signUpContext.getScene().getWindow();
+
+    private void setUi() throws IOException {
+        Stage stage = (Stage) signUpContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/LoginForm.fxml"))));
         stage.centerOnScreen();
     }
